@@ -1,0 +1,52 @@
+﻿@inject HttpClient Http;
+<div class="card">
+    <div class="card-header" style="background-color: aqua; font-weight: bold">
+        Incluir receita
+    </div>
+    <div class="card-body">
+        <EditForm Model="@receita" OnValidSubmit="@HandleValidSubmit">
+            <DataAnnotationsValidator />
+            <ValidationSummary />
+            <div class="form-group">
+                <label for="datainput">Data</label>
+                <InputDate class="form-control" id="datainput" @bind-Value="receita.Data" />
+            </div>
+            <div class="form-group">
+                <label for="descricaoinput">Descrição</label>
+                <InputText class="form-control" id="descricaoinput" @bind-Value="receita.Descricao" />
+            </div>
+            <div class="form-group">
+                <label for="categoriainput">Categoria</label>
+                <InputSelect class="form-control" id="categoriainput" @bind-Value="receita.Categoria">
+                    @{
+                        foreach (var value in Enum.GetValues(typeof(CategoriaReceita)))
+                        {
+                            <option value="@value">@value</option>
+                        }
+                    }
+                </InputSelect>
+            </div>
+            <div class="form-group">
+                <label for="valorinput">Valor</label>
+                <InputNumber class="form-control" id="valorinput" @bind-Value="receita.Valor" />
+            </div>
+            <div>
+                <button type="submit" class="btn btn-primary">Enviar</button>
+            </div>
+        </EditForm>
+    </div>
+</div>
+
+@code{
+
+    private ReceitaDTO receita = new ReceitaDTO { Data = DateTime.Today };
+
+    [Parameter]
+    public EventCallback OnSubmitCallback { get; set; }
+
+    public async Task HandleValidSubmit()
+    {
+        await Http.PostAsJsonAsync<ReceitaDTO>("api/Receitas", receita);
+        await OnSubmitCallback.InvokeAsync();
+    }
+}

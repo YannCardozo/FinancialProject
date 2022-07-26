@@ -1,0 +1,67 @@
+﻿@page "/receitas"
+@using System.Globalization
+@using FinancialProject.Client.Components
+@inject HttpClient Http;
+<div class="row">
+    <div class="col-lg-8">
+        <div class="card" >
+            <div class="card-header" style="background-color: aqua; font-weight: bold ">
+                Receitas
+            </div>
+            <div class="card-body">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>Data</th>
+                            <th>Categoria</th>
+                            <th>Descricao</th>
+                            <th>Valor</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @if (receitas == null)
+                        {
+                            <tr><td><em>Carregando...</em></td></tr>
+                        }
+                        else
+                        {
+                            @foreach (var receita in receitas)
+                            {
+                    <tr>
+                        <td>@receita.Data.ToShortDateString()</td>
+                        <td>@receita.Categoria</td>
+                        <td>@receita.Descricao</td>
+                        <td align="right">@receita.Valor.ToString("C2", CultureInfo.CreateSpecificCulture("pt-BR"))</td>
+                         <td><button type="button" class="btn btn-danger btn-sm">Excluir</button></td>
+                    </tr>
+                            }
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-4">
+        <ReceitaForm OnSubmitCallback="@Refresh"></ReceitaForm>
+    </div>
+</div>
+<div>&nbsp;</div>
+
+@code {
+    private Receita[] receitas;
+    protected async override Task OnInitializedAsync()
+    {
+        await CarregaDados();
+    }
+
+    protected async Task CarregaDados()
+    {
+        receitas = await Http.GetFromJsonAsync<Receita[]>("api/Receitas");
+        StateHasChanged();
+    }
+
+    public async Task Refresh()
+    {
+        await CarregaDados();
+    }   
+}

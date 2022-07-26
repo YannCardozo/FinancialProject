@@ -1,0 +1,16 @@
+{
+  "Version": 1,
+  "ProjectMap": {
+    "dd189bdf-ea7f-4eaf-ab39-02a3e4aae160": {
+      "ProjectGuid": "dd189bdf-ea7f-4eaf-ab39-02a3e4aae160",
+      "DisplayName": "FinancialProject.Server",
+      "ColorIndex": 0
+    },
+    "042319a9-13fd-4209-9643-e2cea1da7a12": {
+      "ProjectGuid": "042319a9-13fd-4209-9643-e2cea1da7a12",
+      "DisplayName": "FinancialProject.Client",
+      "ColorIndex": 1
+    }
+  },
+  "NextColorIndex": 2
+}

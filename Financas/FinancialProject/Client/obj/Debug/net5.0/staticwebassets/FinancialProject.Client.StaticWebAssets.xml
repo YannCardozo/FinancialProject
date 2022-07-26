@@ -1,0 +1,4 @@
+﻿<StaticWebAssets Version="1.0">
+  <ContentRoot BasePath="/" Path="C:\inetpub\wwwroot1\yann\programas\Financas\FinancialProject\Financas\FinancialProject\Client\bin\Debug\net5.0\wwwroot\" />
+  <ContentRoot BasePath="/" Path="C:\inetpub\wwwroot1\yann\programas\Financas\FinancialProject\Financas\FinancialProject\Client\obj\Debug\net5.0\scopedcss\bundle\" />
+</StaticWebAssets>
