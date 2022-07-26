@@ -1,5 +1,7 @@
 # FinancialProject
-A newbie project for a financial smartmenu with some gadgets. The project is build in using c# technology with .net framework,
+A newbie project for a financial CRUD with some gadgets. 
+
+The project was build in using c# technology with .net framework,
 using MVC project model.
 
 first commit - added the crud interface for include or delete any expenses.
